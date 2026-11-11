@@ -84,4 +84,33 @@ public class LeetCode242_ValidAnagram {
 
         return map.isEmpty();
     }
+
+    public static boolean isAnagram3 (String s, String t){
+
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char charS = s.charAt(i);
+            char charT = t.charAt(i);
+
+            // 1. s의 문자는 맵에 추가 (+1)
+            map.put(charS, map.getOrDefault(charS, 0) + 1);
+            if (map.get(charS) == 0) {
+                map.remove(charS);
+            }
+
+            // 2. t의 문자는 맵에서 감소 (-1)
+            map.put(charT, map.getOrDefault(charT, 0) - 1);
+            if (map.get(charT) == 0) {
+                map.remove(charT);
+            }
+        }
+
+        // 아나그램이라면 +1과 -1이 모두 상쇄되어 맵이 완전히 비워짐
+        return map.isEmpty();
+    }
 }
