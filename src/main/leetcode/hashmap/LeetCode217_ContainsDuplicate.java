@@ -33,4 +33,16 @@ public class LeetCode217_ContainsDuplicate {
 
         return false;
     }
+
+    public static boolean containsDuplicate3(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+
+        for (int num : nums) {
+            if (!set.add(num)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
